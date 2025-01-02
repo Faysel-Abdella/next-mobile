@@ -56,7 +56,7 @@ export default function page() {
                 </div>
                 <div className="p-4 bg-white my-auto grow">
                     <Button className="w-full bg-primary text-white h-12">
-                        D포인트로 간편 가입
+                        확인
                     </Button>
                 </div>
             </ScrollArea>
