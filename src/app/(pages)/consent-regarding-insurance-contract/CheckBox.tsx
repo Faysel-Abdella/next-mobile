@@ -85,11 +85,9 @@ export default function CheckBox({
             }
             return newSelected
         })
-        setAll((prev) => {
-            const isCurrentlySelected = selectedItems.has(parentId)
-            const adjustment = isCurrentlySelected ? 0 : 1
-            return prev + adjustment
-        })
+        // if (selectedItems.has(parentId)) {
+        //     setAll((pre) => pre + 1)
+        // }
     }
 
     return (
