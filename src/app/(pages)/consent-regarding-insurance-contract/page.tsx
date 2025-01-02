@@ -128,7 +128,7 @@ export default function Page() {
                     <div className="bg-[#F5F5F5] mt-4">
                         <div className="mt-6 text-sm text-gray-500 leading-relaxed px-5 space-y-2 py-1.5">
                             <p className="text-[#ADADAD]">유의사항</p>
-                            <p className="text-xs">
+                            <p className="text-xs py-1">
                                 본 동의를 거부하시는 경우에는 보험계약 상담 등
                                 정상적인 서비스 제공이 불가능하며 본 동의서에
                                 의한 개인(신용) 정보 조회는 귀하의 신용 등급에
