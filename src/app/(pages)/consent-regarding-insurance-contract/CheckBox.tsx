@@ -81,10 +81,14 @@ export default function CheckBox({
                 )
                 if (allSiblingsChecked) {
                     newSelected.add(parentId)
-                    setAll((prev) => prev + 1)
                 }
             }
             return newSelected
+        })
+        setAll((prev) => {
+            const isCurrentlySelected = selectedItems.has(parentId)
+            const adjustment = isCurrentlySelected ? 0 : 1
+            return prev + adjustment
         })
     }
 
