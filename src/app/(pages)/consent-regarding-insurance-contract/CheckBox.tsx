@@ -85,9 +85,6 @@ export default function CheckBox({
             }
             return newSelected
         })
-        // if (selectedItems.has(parentId)) {
-        //     setAll((pre) => pre + 1)
-        // }
     }
 
     return (
@@ -139,7 +136,8 @@ export default function CheckBox({
                                         onClick={() =>
                                             handleChildCheckboxChange(
                                                 child.id,
-                                                section.id
+                                                section.id,
+                                                section.children
                                             )
                                         }
                                         className="w-4 h-4 rounded-[2px] bg-[#FF5E18] flex items-center justify-center"
@@ -151,7 +149,8 @@ export default function CheckBox({
                                         onClick={() =>
                                             handleChildCheckboxChange(
                                                 child.id,
-                                                section.id
+                                                section.id,
+                                                section.children
                                             )
                                         }
                                         className="w-4 h-4 rounded-[2px] border-2 border-primary/90"
