@@ -81,6 +81,7 @@ export default function CheckBox({
                 )
                 if (allSiblingsChecked) {
                     newSelected.add(parentId)
+                    setAll((prev) => prev + 1)
                 }
             }
             return newSelected
