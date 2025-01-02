@@ -44,16 +44,36 @@ const consentSections: ConsentSection[] = [
     {
         id: 'consent4',
         label: '상품 소개를 위한 선택 동의(선택)',
-        children: [{ id: 'consent3-1', label: '수집, 이용에 관한 사항' }],
+        children: [{ id: 'consent4-1', label: '수집, 이용에 관한 사항' }],
     },
 ]
 
 export default function Page() {
     const [all, setAll] = useState(0)
+    const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
+
+    const parentClick = () => {
+        if (all === consentSections.length) {
+            setSelectedItems(new Set())
+            setAll(0)
+        } else {
+            const allIds = new Set<string>()
+            consentSections.forEach((section) => {
+                allIds.add(section.id)
+                if (section.children?.length) {
+                    section.children.forEach((child) => allIds.add(child.id));
+                  }
+            })
+
+            setSelectedItems(allIds)
+            setAll(consentSections.length)
+        }
+    }
+
     return (
         <div>
             <PushBack />
-            <ScrollArea className="w-full h-[calc(100vh-3rem)] relative overflow-y-auto">
+            <div className="flex flex-col h-[calc(100vh-3.5rem)] overflow-y-auto scrollbar-hide">
                 <div className="min-h-full flex flex-col">
                     <header className="flex items-center p-4">
                         <h1 className="text-xl text-[#4D4D4D] font-[700] ml-2">
@@ -65,14 +85,14 @@ export default function Page() {
                         <div className="flex items-start">
                             {all === consentSections.length ? (
                                 <div
-                                    onClick={() => setAll(0)}
+                                    onClick={parentClick}
                                     className="w-4 h-4 rounded-[2px] border-2 border-black/20 bg-[#4D4D4D] flex items-center justify-center"
                                 >
                                     <Check className="text-white font-bold" />
                                 </div>
                             ) : (
                                 <div
-                                    onClick={() => setAll(consentSections.length)}
+                                    onClick={parentClick}
                                     className="w-4 h-4 rounded-[2px] border-2 border-black/50"
                                 />
                             )}
@@ -88,14 +108,20 @@ export default function Page() {
                     <div className="relative grow">
                         <Accordion type="multiple" className="space-y-2 p-4">
                             {consentSections.map((section, index) => (
-                                <CheckBox section={section} key={index} setAll={setAll} />
+                                <CheckBox
+                                    section={section}
+                                    key={index}
+                                    setAll={setAll}
+                                    selectedItems={selectedItems}
+                                    setSelectedItems={setSelectedItems}
+                                />
                             ))}
                         </Accordion>
                     </div>
                     {/* Footer section at the bottom */}
                     <div className="bg-[#F5F5F5] mt-4">
                         <div className="mt-6 text-sm text-gray-500 leading-relaxed px-5 space-y-2 py-1.5">
-                            <p>유의사항</p>
+                            <p className="text-[#ADADAD]">유의사항</p>
                             <p className="text-xs">
                                 본 동의를 거부하시는 경우에는 보험계약 상담 등
                                 정상적인 서비스 제공이 불가능하며 본 동의서에
@@ -115,8 +141,7 @@ export default function Page() {
                         </div>
                     </div>
                 </div>
-                <ScrollBar />
-            </ScrollArea>
+            </div>
         </div>
     )
 }

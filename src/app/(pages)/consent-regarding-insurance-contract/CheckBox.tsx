@@ -26,12 +26,14 @@ interface ConsentSection {
 export default function CheckBox({
     section,
     setAll,
+    selectedItems,
+    setSelectedItems,
 }: {
     section: ConsentSection
     setAll: Dispatch<SetStateAction<number>>
+    selectedItems: Set<string>
+    setSelectedItems: Dispatch<SetStateAction<Set<string>>>
 }) {
-    const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
-
     const handleParentCheckboxChange = (
         sectionId: string,
         children: { id: string }[] = []
@@ -55,9 +57,7 @@ export default function CheckBox({
 
         setAll((prev) => {
             const isCurrentlySelected = selectedItems.has(sectionId)
-            const adjustment = isCurrentlySelected
-                ? -(1)
-                : 1
+            const adjustment = isCurrentlySelected ? -1 : 1
             return prev + adjustment
         })
     }
@@ -95,8 +95,8 @@ export default function CheckBox({
         >
             <div className="flex-1 p-0 px-0.5">
                 <AccordionTrigger className="px-2 py-3 hover:no-underline">
-                    <div className="flex items-start">
-                        {selectedItems.size - 1 === section.children?.length ? (
+                    <div className="flex items-center">
+                        {selectedItems.has(section.id) ? (
                             <div
                                 onClick={() =>
                                     handleParentCheckboxChange(
