@@ -19,11 +19,6 @@ const types = [
     { key: '가입자', value: '홍길동' },
     { key: '보험기간', value: '3년' },
     { key: '보험료', value: '6,160원' },
-
-    { key: '상품 유형', value: '교보생활습관케어보험(무배당)[d]' },
-    { key: '가입자', value: '홍길동' },
-    { key: '보험기간', value: '3년' },
-    { key: '보험료', value: '6,160원' },
 ]
 
 const balance = [
