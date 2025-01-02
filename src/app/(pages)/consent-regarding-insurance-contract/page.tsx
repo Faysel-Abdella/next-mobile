@@ -51,6 +51,12 @@ const consentSections: ConsentSection[] = [
 export default function Page() {
     const [all, setAll] = useState(0)
     const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
+    const consentLength =
+        consentSections.length +
+        consentSections.reduce(
+            (acc, section) => acc + (section.children?.length || 0),
+            0
+        )
 
     const parentClick = () => {
         if (all === consentSections.length) {
@@ -61,8 +67,8 @@ export default function Page() {
             consentSections.forEach((section) => {
                 allIds.add(section.id)
                 if (section.children?.length) {
-                    section.children.forEach((child) => allIds.add(child.id));
-                  }
+                    section.children.forEach((child) => allIds.add(child.id))
+                }
             })
 
             setSelectedItems(allIds)
@@ -83,7 +89,7 @@ export default function Page() {
                     {/* Main content section */}
                     <div className="px-5">
                         <div className="flex items-start">
-                            {all === consentSections.length ? (
+                            {consentLength === selectedItems.size ? (
                                 <div
                                     onClick={parentClick}
                                     className="w-4 h-4 rounded-[2px] border-2 border-black/20 bg-[#4D4D4D] flex items-center justify-center"
