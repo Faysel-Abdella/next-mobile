@@ -11,13 +11,22 @@ const types = [
     { key: '가입자', value: '홍길동' },
     { key: '보험기간', value: '3년' },
     { key: '보험료', value: '6,160원' },
+
+    // { key: '상품 유형', value: '교보생활습관케어보험(무배당)[d]' },
+    // { key: '가입자', value: '홍길동' },
+    // { key: '보험기간', value: '3년' },
+    // { key: '보험료', value: '6,160원' },
+    // { key: '상품 유형', value: '교보생활습관케어보험(무배당)[d]' },
+    // { key: '가입자', value: '홍길동' },
+    // { key: '보험기간', value: '3년' },
+    // { key: '보험료', value: '6,160원' },
 ]
 
 export default function page() {
     return (
-        <div className="pb-5 overflow-y-auto">
+        <div className="flex flex-col h-[calc(100vh-3rem)]">
             <PushBack />
-            <ScrollArea className="w-full min-h-[calc(100vh-3rem)] flex flex-col relative overflow-y-auto">
+            <div className="flex-1 overflow-y-auto">
                 <div className="py-5 px-5 flex flex-col justify-center items-center">
                     <div className="w-[50px] h-[50px] rounded-full bg-primary flex items-center justify-center">
                         <Check
@@ -43,24 +52,20 @@ export default function page() {
                         ))}
                     </div>
                 </div>
-
-                <div className=" mt-auto">
-                    <div className="mt-6 text-gray-500 leading-relaxed px-5 space-y-2 py-1.5">
-                        <p className="text-lg">가입이 완료되었습니다!</p>
-                        <p className="text-base">
-                            hyungjoo83 님, 교보생활습관케어보험(무배당)[D]
-                            간편가입 신청이 완료 되었습니다. 자세한 보장내용과
-                            보험가입 완료를 위해 전문 상담원이 연락드리겠습니다!
-                        </p>
-                    </div>
+                <div className="mt-6 text-gray-500 leading-relaxed px-5 space-y-2 py-1.5">
+                    <p className="text-lg">가입이 완료되었습니다!</p>
+                    <p className="text-base">
+                        hyungjoo83 님, 교보생활습관케어보험(무배당)[D] 간편가입
+                        신청이 완료 되었습니다. 자세한 보장내용과 보험가입
+                        완료를 위해 전문 상담원이 연락드리겠습니다!
+                    </p>
                 </div>
-                <div className="p-4 bg-white my-auto grow">
-                    <Button className="w-full bg-primary text-white h-12">
-                        확인
-                    </Button>
-                </div>
-            </ScrollArea>
-            page
+            </div>
+            <div className="w-full p-4 bg-white">
+                <Button className="w-full bg-primary text-white h-12">
+                    D포인트로 간편 가입
+                </Button>
+            </div>
         </div>
     )
 }

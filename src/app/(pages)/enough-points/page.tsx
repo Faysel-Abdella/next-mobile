@@ -33,64 +33,72 @@ export default function Page() {
             <CustomDrawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
                 <PushBack />
 
-                <ScrollArea className="w-full h-[calc(100vh-3rem)] relative overflow-y-auto">
-                    <div className="py-5 px-5">
-                        <p className="text-[#4D4D4D] font-[500] text-xl">
-                            보험 가입에 중요한 정보입니다.
-                        </p>
-                        <p className="text-[#4D4D4D] font-[700] text-xl">
-                            꼭 확인해주세요!
-                        </p>
-                    </div>
-                    <div className="px-5">
-                        <div className="grid grid-cols-[1.1fr,2.5fr] divide-y-2 border-y-4">
-                            {types.map((type, index) => (
-                                <React.Fragment key={index}>
-                                    <div className="bg-[#f0f0f1] h-[50px] p-1 py-2 w-full flex justify-center items-center text-base">
-                                        {type.key}
-                                    </div>
-                                    <div className="w-full h-full flex py-2 justify-center items-center p-1 text-base">
-                                        {type.value}
-                                    </div>
-                                </React.Fragment>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="py-2 mt-6 px-5">
-                        <Label className="text-[#4D4D4D] font-[300] text-base mt-8">
-                            D포인트(보유 50000p)
-                        </Label>
-                        <div className="flex items-center h-10 gap-2">
-                            <Input className="w-full h-10 mt-2 p-0 px-2 text-base outline-none" />
-                            <Button className="w-1/3 h-10 mt-2 p-0 bg-primary/10 text-primary text-sm">
-                                전액 사용
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="w-full flex justify-between items-center mt-12 px-5">
-                        <p className="font-semibold text-base">납입 보험료</p>
-                        <p className="font-[500] text-xl text-primary">0 원</p>
-                    </div>
-                    <div className="bg-[#F5F5F5] mt-auto">
-                        <div className="mt-6 text-sm text-gray-500 leading-relaxed px-5 space-y-2 py-1.5">
-                            <p>간편가입 상담 안내</p>
-                            <p className="text-xs">
-                                해당 보험은 간편가입 상담을 통해 설명드리고,
-                                최종 가입이 완료됩니다. 전화 상담이 진행되지
-                                않으면 가입이 불가하니 꼭 전화를 받아주세요.
-                                간편가입 신청 후 2~3일 이내 간편가입 상담을
-                                진행합니다.
+                <div className="flex flex-col h-[calc(100vh-3rem)] overflow-y-auto">
+                    <div className="flex-grow">
+                        <div className="py-5 px-5">
+                            <p className="text-[#4D4D4D] font-[500] text-xl">
+                                보험 가입에 중요한 정보입니다.
+                            </p>
+                            <p className="text-[#4D4D4D] font-[700] text-xl">
+                                꼭 확인해주세요!
                             </p>
                         </div>
-                        <div className="p-4 bg-white">
-                            <CustomDrawerTrigger asChild>
-                                <Button className="w-full bg-primary text-white h-12">
-                                    D포인트로 간편 가입
+                        <div className="px-5">
+                            <div className="grid grid-cols-[1.1fr,2.5fr] divide-y-2 border-y-4">
+                                {types.map((type, index) => (
+                                    <React.Fragment key={index}>
+                                        <div className="bg-[#f0f0f1] h-[50px] p-1 py-2 w-full flex justify-center items-center text-base">
+                                            {type.key}
+                                        </div>
+                                        <div className="w-full h-full flex py-2 justify-center items-center p-1 text-base">
+                                            {type.value}
+                                        </div>
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="py-2 mt-6 px-5">
+                            <Label className="text-[#4D4D4D] font-[300] text-base mt-8">
+                                D포인트(보유 50000p)
+                            </Label>
+                            <div className="flex items-center h-10 gap-2">
+                                <Input className="w-full h-10 mt-2 p-0 px-2 text-base outline-none" />
+                                <Button className="w-1/3 h-10 mt-2 p-0 bg-primary/10 text-primary text-sm">
+                                    전액 사용
                                 </Button>
-                            </CustomDrawerTrigger>
+                            </div>
                         </div>
                     </div>
-                </ScrollArea>
+                    <div className="mt-auto">
+                        <div className="w-full flex justify-between items-center mt-12 px-5">
+                            <p className="font-semibold text-base">
+                                납입 보험료
+                            </p>
+                            <p className="font-[500] text-xl text-primary">
+                                0 원
+                            </p>
+                        </div>
+                        <div className="bg-[#F5F5F5]">
+                            <div className="mt-6 text-sm text-gray-500 leading-relaxed px-5 space-y-2 py-1.5">
+                                <p>간편가입 상담 안내</p>
+                                <p className="text-xs">
+                                    해당 보험은 간편가입 상담을 통해 설명드리고,
+                                    최종 가입이 완료됩니다. 전화 상담이 진행되지
+                                    않으면 가입이 불가하니 꼭 전화를 받아주세요.
+                                    간편가입 신청 후 2~3일 이내 간편가입 상담을
+                                    진행합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-full p-4 bg-white">
+                        <CustomDrawerTrigger asChild>
+                            <Button className="w-full bg-primary text-white h-12">
+                                D포인트로 간편 가입
+                            </Button>
+                        </CustomDrawerTrigger>
+                    </div>
+                </div>
                 <CustomDrawerContent className="relative px-5 py-8  flex flex-col gap-4 font-medium">
                     <div
                         onClick={() => setIsDrawerOpen(false)}
