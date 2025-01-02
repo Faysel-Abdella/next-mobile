@@ -15,7 +15,7 @@ import { X } from 'lucide-react'
 import React, { useState } from 'react'
 
 const types = [
-    { key: '상품 유형', value: '교보생활습관케어보험(무배당)[d]' },
+    { key: '상품 유형', value: '교보생활습관케어보험(무배당)[D]' },
     { key: '가입자', value: '홍길동' },
     { key: '보험기간', value: '3년' },
     { key: '보험료', value: '6,160원' },
@@ -47,10 +47,10 @@ export default function Page() {
                             <div className="grid grid-cols-[1.1fr,2.5fr] divide-y-2 border-y-4">
                                 {types.map((type, index) => (
                                     <React.Fragment key={index}>
-                                        <div className="bg-[#f0f0f1] h-[50px] p-1 py-2 w-full flex justify-center items-center text-base">
+                                        <div className="bg-[#f0f0f1] h-full p-1 py-2 w-full flex justify-center items-center text-base">
                                             {type.key}
                                         </div>
-                                        <div className="w-full h-full flex py-2 justify-center items-center p-1 text-base">
+                                        <div className="w-full min-h-[50px] flex py-2 justify-center items-center p-1 text-base">
                                             {type.value}
                                         </div>
                                     </React.Fragment>

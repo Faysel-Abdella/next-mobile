@@ -1,9 +1,13 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import PushBack from '@/components/PushBack'
 import CheckBox from './CheckBox'
 import { Button } from '@/components/ui/button'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { Accordion } from '@/components/ui/accordion'
+import { Check } from 'lucide-react'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
 
 interface ConsentSection {
     id: string
@@ -14,82 +18,77 @@ interface ConsentSection {
 const consentSections: ConsentSection[] = [
     {
         id: 'consent1',
-        label: '보험금 지급 심사를 위한 동의',
+        label: '고객정보 관리 및 상품 제안, 보장 분석을 위한 동의',
         children: [
-            { id: 'consent1-1', label: '개인(신용) 정보의 수집·이용 동의' },
-            { id: 'consent1-2', label: '개인(신용) 정보의 조회 동의' },
-            { id: 'consent1-3', label: '개인(신용) 정보의 조회 동의' },
-            { id: 'consent1-4', label: '개인(신용) 정보의 조회 동의' },
+            { id: 'consent1-1', label: '수집 이용에 관한 사항(필수)' },
+            { id: 'consent1-2', label: '제공에 관한 사항(필수)' },
+            { id: 'consent1-3', label: '조회에 관한 사항(필수)' },
         ],
     },
     {
         id: 'consent2',
-        label: '보험금 지급 심사를 위한 동의',
+        label: '계약, 체결 이행 등을 위한 동의',
         children: [
-            { id: 'consent2-1', label: '개인(신용) 정보의 제공 동의' },
-            { id: 'consent2-2', label: '민감정보 처리 동의' },
-            { id: 'consent2-3', label: '민감정보 처리 동의' },
+            { id: 'consent2-1', label: '수집 이용에 관한 사항(필수)' },
+            { id: 'consent2-2', label: '국내 제3자 제공동의(필수)' },
+            { id: 'consent2-3', label: '국외 제3자 제공동의(필수)' },
+            { id: 'consent2-4', label: '조회에 관한 사항(필수)' },
+            { id: 'consent2-5', label: '서비스 이용관련 동의(필수)' },
         ],
     },
     {
         id: 'consent3',
-        label: '보험금 지급 심사를 위한 동의',
-        children: [
-            { id: 'consent3-1', label: '개인(신용) 정보의 수집·이용 동의' },
-            { id: 'consent3-2', label: '개인(신용) 정보의 조회 동의' },
-            { id: 'consent3-3', label: '개인(신용) 정보의 조회 동의' },
-            { id: 'consent3-4', label: '개인(신용) 정보의 조회 동의' },
-        ],
+        label: '가입 전 확인 해야할 사항',
+        children: [{ id: 'consent3-1', label: '가입전 확인 해야할 사항' }],
     },
     {
         id: 'consent4',
-        label: '보험금 지급 심사를 위한 동의',
-        children: [
-            { id: 'consent3-1', label: '개인(신용) 정보의 제공 동의' },
-            { id: 'consent3-2', label: '민감정보 처리 동의' },
-            { id: 'consent3-3', label: '민감정보 처리 동의' },
-        ],
-    },
-    {
-        id: 'consent5',
-        label: '보험금 지급 심사를 위한 동의',
-        children: [
-            { id: 'consent5-1', label: '개인(신용) 정보의 수집·이용 동의' },
-            { id: 'consent5-2', label: '개인(신용) 정보의 조회 동의' },
-            { id: 'consent5-3', label: '개인(신용) 정보의 조회 동의' },
-            { id: 'consent5-4', label: '개인(신용) 정보의 조회 동의' },
-        ],
-    },
-    {
-        id: 'consent6',
-        label: '보험금 지급 심사를 위한 동의',
-        children: [
-            { id: 'consent2-1', label: '개인(신용) 정보의 제공 동의' },
-            { id: 'consent2-2', label: '민감정보 처리 동의' },
-            { id: 'consent2-3', label: '민감정보 처리 동의' },
-        ],
+        label: '상품 소개를 위한 선택 동의(선택)',
+        children: [{ id: 'consent3-1', label: '수집, 이용에 관한 사항' }],
     },
 ]
 
 export default function Page() {
+    const [all, setAll] = useState(0)
     return (
         <div>
             <PushBack />
-            <ScrollArea className="w-full h-[calc(100vh)] relative overflow-y-auto">
+            <ScrollArea className="w-full h-[calc(100vh-3rem)] relative overflow-y-auto">
                 <div className="min-h-full flex flex-col">
                     <header className="flex items-center p-4">
-                        <h1 className="text-xl text-[#4D4D4D] font-medium ml-2">
+                        <h1 className="text-xl text-[#4D4D4D] font-[700] ml-2">
                             보험 계약 관련 동의(필수)
                         </h1>
                     </header>
                     {/* Main content section */}
-                    <div className="relative px-5 grow">
-                        <Accordion
-                            type="multiple"
-                            className="space-y-2 shadow-md rounded-lg"
-                        >
+                    <div className="px-5">
+                        <div className="flex items-start">
+                            {all === consentSections.length ? (
+                                <div
+                                    onClick={() => setAll(0)}
+                                    className="w-4 h-4 rounded-[2px] border-2 border-black/20 bg-[#4D4D4D] flex items-center justify-center"
+                                >
+                                    <Check className="text-white font-bold" />
+                                </div>
+                            ) : (
+                                <div
+                                    onClick={() => setAll(consentSections.length)}
+                                    className="w-4 h-4 rounded-[2px] border-2 border-black/50"
+                                />
+                            )}
+                            <Label
+                                htmlFor={'all'}
+                                className="ml-2 text-[14px] text-[#4D4D4D]"
+                            >
+                                전체 동의
+                            </Label>
+                        </div>
+                        <Separator className="mt-2" />
+                    </div>
+                    <div className="relative grow">
+                        <Accordion type="multiple" className="space-y-2 p-4">
                             {consentSections.map((section, index) => (
-                                <CheckBox section={section} key={index} />
+                                <CheckBox section={section} key={index} setAll={setAll} />
                             ))}
                         </Accordion>
                     </div>
