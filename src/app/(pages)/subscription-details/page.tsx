@@ -24,9 +24,9 @@ const types = [
 
 export default function page() {
     return (
-        <div className="flex flex-col h-[calc(100vh-3rem)]">
+        <div className="flex flex-col h-[calc(100vh-1rem)]">
             <PushBack />
-            <div className="flex-1 overflow-y-auto">
+            <ScrollArea className="flex-1 overflow-y-auto">
                 <div className="py-5 px-5 flex flex-col justify-center items-center">
                     <div className="w-[50px] h-[50px] rounded-full bg-primary flex items-center justify-center">
                         <Check
@@ -60,10 +60,10 @@ export default function page() {
                         완료를 위해 전문 상담원이 연락드리겠습니다!
                     </p>
                 </div>
-            </div>
+            </ScrollArea>
             <div className="w-full p-4 bg-white">
                 <Button className="w-full bg-primary text-white h-12">
-                    D포인트로 간편 가입
+                    확인
                 </Button>
             </div>
         </div>
